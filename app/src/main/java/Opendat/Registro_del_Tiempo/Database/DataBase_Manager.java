@@ -30,7 +30,8 @@ import Opendat.Registro_del_Tiempo.Clases_Genericas.RegistroTransito;
  * 12.10.2016               Jonathan Vasquez        Creacion de Clase
  * 07.11.2016               Jonathan Vasquez        Generacion de variables estaticas de nombre de tablas y CRUD (Create-Read-Update-Delete).
  * 09.11.2016               Jonathan Vasquez        Generacion de Funcion de verificacion de reingreso
- * 10.11.2016               JOnathan Vasquez        Implemetacion de Ingreso de marca online y offline
+ * 10.11.2016               Jonathan Vasquez        Implemetacion de Ingreso de marca online y offline
+ * 22.11.2016               Jonathan Vasquez        Implementacion de llamados de eliminaciones y registros de marcas de asistencia.
  */
 public class DataBase_Manager {
 
