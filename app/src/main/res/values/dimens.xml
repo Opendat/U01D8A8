@@ -1,0 +1,27 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="control_left_margin">12dp</dimen>
+    <dimen name="control_right_margin">12dp</dimen>
+    <dimen name="control_button_event_width">200dp</dimen>
+    <dimen name="control_button_event_height">100dp</dimen>
+    <dimen name="control_gridpanel_event_height">340dp</dimen>
+    <dimen name="control_gridpanel_event_width">500dp</dimen>
+    <dimen name="control_space_event_height">20dp</dimen>
+
+
+    <!--Uso en admin Activity-->
+    <dimen name="control_gridLayout_margin_Admin">10dp</dimen>
+    <dimen name="control_gridLayout_height_Admin">400dp</dimen>
+    <dimen name="control_button_admin_width_layout">400dp</dimen>
+    <dimen name="control_space_admin_height">20dp</dimen>
+    <dimen name="control_textview_admin_margin_top">20dp</dimen>
+    <dimen name="control_textview_admin_text_size">50dp</dimen>
+
+
+
+
+
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

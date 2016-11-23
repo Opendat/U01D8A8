@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_events"
+    android:background="@drawable/geo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/control_left_margin"
+        android:paddingRight="@dimen/control_right_margin"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/led_red_th"
+            android:id="@+id/IV_FaroEvent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingTop="10dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/persona_default"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/IV_Foto"
+            android:layout_below="@+id/TV_NombrePersonaEvent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="29dp"
+            android:id="@+id/PB_ProcesoEvent"
+            android:indeterminate="true"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+        <GridLayout
+            android:layout_width="@dimen/control_gridpanel_event_width"
+            android:layout_height="@dimen/control_gridpanel_event_height"
+            android:rowCount="6"
+            android:columnCount="2"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/IV_FaroEvent"
+            android:layout_toStartOf="@+id/IV_FaroEvent">
+
+
+            <Button
+                android:text="@string/tx_IniJor"
+                android:layout_height="@dimen/control_button_event_height"
+                android:layout_width="@dimen/control_button_event_width"
+                android:id="@+id/BT_InicioJornada"
+                android:background="@drawable/circle_green"
+                android:drawableTop="@drawable/ic_timer"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_gravity="left"
+                />
+
+
+            <Button
+                android:text="@string/tx_IniPau"
+                android:layout_width="@dimen/control_button_event_width"
+                android:layout_height="@dimen/control_button_event_height"
+                android:id="@+id/BT_InicioPausa"
+                android:background="@drawable/circle_red"
+                android:drawableTop="@drawable/ic_lunch"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_gravity="right"
+                 />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/control_space_event_height"
+                android:layout_columnSpan="2"
+                />
+
+
+            <Button
+                android:text="@string/tx_TerPau"
+                android:layout_width="@dimen/control_button_event_width"
+                android:layout_height="@dimen/control_button_event_height"
+                android:id="@+id/BT_TerminoPausa"
+                android:background="@drawable/circle_red"
+                android:drawableTop="@drawable/ic_lunch"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_gravity="left"
+                />
+
+
+
+            <Button
+                android:text="@string/tx_TerJor"
+                android:layout_width="@dimen/control_button_event_width"
+                android:layout_height="@dimen/control_button_event_height"
+                android:id="@+id/BT_TerminoJornada"
+                android:background="@drawable/circle_green"
+                android:drawableTop="@drawable/ic_timer"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_gravity="right"
+                 />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/control_space_event_height"
+                android:layout_columnSpan="2"
+                />
+
+            <Button
+                android:text="@string/tx_Transito"
+                android:layout_width="@dimen/control_button_event_width"
+                android:layout_height="@dimen/control_button_event_height"
+                android:id="@+id/BT_Transito"
+                android:background="@drawable/circle_yellow"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:drawableTop="@drawable/ic_transit"
+                android:layout_gravity="left"
+                />
+            <Button
+                android:text="@string/tx_cancel"
+                android:layout_width="@dimen/control_button_event_width"
+                android:layout_height="@dimen/control_button_event_height"
+                android:id="@+id/BT_Cancelar"
+                android:background="@drawable/circle_transit"
+                android:drawableTop="@drawable/ic_cancel"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_gravity="right"
+                 />
+
+        </GridLayout>
+
+        <TextView
+            android:text="Cargando..."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TV_NombrePersonaEvent"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:layout_alignBottom="@+id/IV_FaroEvent"
+            android:layout_alignLeft="@+id/IV_Foto"
+            android:layout_alignStart="@+id/IV_Foto" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

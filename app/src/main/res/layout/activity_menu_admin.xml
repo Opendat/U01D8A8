@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_menu_admin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/control_left_margin"
+    android:paddingRight="@dimen/control_right_margin"
+    tools:context="com.civi.Activities.MenuAdminActivity"
+    android:background="@drawable/first">
+
+    <Button
+        android:text="@string/tx_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BT_Volver_Admin"
+        android:layout_marginTop="@dimen/control_textview_admin_margin_top"
+        android:background="@drawable/circle_green"
+        android:drawableTop="@drawable/ic_home"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_ws_online"
+        android:id="@+id/IV_Conexion_Ws_Admin"
+        android:gravity="fill_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_db_online"
+        android:id="@+id/IV_Conexion_Db_Admin"
+        android:layout_toLeftOf="@+id/IV_Conexion_Ws_Admin"
+        android:layout_alignBottom="@id/IV_Conexion_Ws_Admin"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:text="@string/tx_titulo_administracion"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/control_textview_admin_text_size"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/control_textview_admin_margin_top"
+        android:gravity="center"
+        android:id="@+id/textView" />
+
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/control_gridLayout_height_Admin"
+        android:id="@+id/GridLayout_Opciones"
+        android:rowCount="7"
+        android:columnCount="3"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <Button
+            android:text="@string/tx_transTransito"
+            android:layout_width="@dimen/control_button_admin_width_layout"
+            android:layout_height="wrap_content"
+            android:id="@+id/BT_TransTransit"
+            android:background="@drawable/circle_light_blue"
+            android:drawableTop="@drawable/ic_save_data"
+            android:padding="24dp"
+            android:textColor="@color/colorLettersWhite"
+            />
+        <Button
+            android:text="@string/tx_UpdateLDV"
+            android:layout_width="@dimen/control_button_admin_width_layout"
+            android:layout_height="wrap_content"
+            android:id="@+id/BT_UpdateLDV"
+            android:background="@drawable/circle_light_blue"
+            android:drawableTop="@drawable/ic_sync"
+            android:padding="24dp"
+            android:layout_gravity="right"
+            android:textColor="@color/colorLettersWhite"
+            />
+
+        <Space android:layout_height="@dimen/control_space_admin_height"
+            android:layout_width="match_parent"
+            android:layout_columnSpan="3"/>
+
+        <Button
+            android:text="@string/tx_UpdateParams"
+            android:layout_width="@dimen/control_button_admin_width_layout"
+            android:layout_height="wrap_content"
+            android:id="@+id/BT_UpdateParams"
+            android:background="@drawable/circle_light_blue"
+            android:drawableTop="@drawable/ic_sync"
+            android:padding="24dp"
+            android:textColor="@color/colorLettersWhite"
+            />
+
+        <Button
+            android:text="@string/tx_transMarca"
+            android:layout_width="@dimen/control_button_admin_width_layout"
+            android:layout_height="wrap_content"
+            android:id="@+id/BT_TransMark"
+            android:background="@drawable/circle_light_blue"
+            android:drawableTop="@drawable/ic_save_data"
+            android:padding="24dp"
+            android:layout_gravity="right"
+            android:textColor="@color/colorLettersWhite"
+            />
+
+        <Space android:layout_height="@dimen/control_space_admin_height"
+            android:layout_width="match_parent"
+            android:layout_columnSpan="3"/>
+
+        <Button
+            android:text="@string/tx_OpenDoor"
+            android:layout_width="@dimen/control_button_admin_width_layout"
+            android:layout_height="wrap_content"
+            android:id="@+id/BT_OpenDoor"
+            android:background="@drawable/circle_light_blue"
+            android:drawableTop="@drawable/ic_transit"
+            android:padding="24dp"
+            android:textColor="@color/colorLettersWhite"
+            />
+
+        <Button
+            android:text="@string/tx_Close"
+            android:layout_width="@dimen/control_button_admin_width_layout"
+            android:layout_height="wrap_content"
+            android:id="@+id/BT_CloseApp"
+            android:background="@drawable/circle_red"
+            android:drawableTop="@drawable/ic_timer"
+            android:padding="24dp"
+            android:layout_gravity="right"/>
+
+
+        <Space android:layout_height="@dimen/control_space_admin_height"
+            android:layout_width="match_parent"
+            android:layout_columnSpan="3"/>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/PB_Proceso_Admin"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            android:layout_columnSpan ="2"
+            android:layout_gravity="bottom"/>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/PB_Proceso_Admin_2"
+            android:layout_columnSpan ="2"
+            android:indeterminate="false"
+            android:visibility="invisible"
+            />
+
+
+    </GridLayout>
+
+
+
+
+</RelativeLayout>

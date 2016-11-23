@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">U01D8A8</string>
+    <string name="tx_titulo">Sistema de Registro de Asistencia y Tiempo\nPresente su Tarjeta</string>
+    <string name="tx_IniJor">Inicio de Jornada</string>
+    <string name="tx_IniPau">Inicio de Pausa</string>
+    <string name="tx_TerJor">Termino de Jornada</string>
+    <string name="tx_TerPau">Termino de Pausa</string>
+    <string name="tx_tituloFirst">Configuracion Dispositivo</string>
+    <string name="tx_idPort">Ingresar la ID de portico</string>
+    <string name="tx_ipBD">Ingresar la IP de la base de datos</string>
+    <string name="tx_ipWS">Ingresar la IP del webservice</string>
+    <string name="tx_Transito">Transito</string>
+    <string name="tx_cancel">Cancelar</string>
+    <string name="tx_iniciate">Iniciar</string>
+
+
+    <!--String de Activity de administrador-->
+    <string name="tx_titulo_administracion">Bienvenido Administrador</string>
+    <string name="tx_return">Volver</string>
+    <string name="tx_Close">Cerrar Aplicación</string>
+    <string name="tx_transMarca">Transferir Marcas Offline</string>
+    <string name="tx_transTransito">Transferir Marcas de Transito</string>
+    <string name="tx_UpdateParams">Actualizar Parametros</string>
+    <string name="tx_UpdateLDV">Actualizar LDV</string>
+    <string name="tx_OpenDoor">Apertura de Puerta</string>
+
+
+</resources>
