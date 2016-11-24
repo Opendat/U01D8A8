@@ -64,13 +64,6 @@ public class EventsActivity extends AppCompatActivity {
 
 
     ProgressDialog progressDialogCargando;
-    private int progressStatus = 0; //variable  que controla el porcetaje de avance del ingreso de marca.
-
-    private void ShowConfirmDialog(){
-
-    }
-
-
 
     /**
      * Metodo utilizado para realizar el llamado a la obtenidos de antecedentes de la persona dependiendo del estado
@@ -366,7 +359,8 @@ public class EventsActivity extends AppCompatActivity {
         public void onClick(View v) {
             String evento = GetEventoSeleccionado(112);
             EventoSeleccionado = evento;
-            VerificarAutentificacion();
+            //VerificarAutentificacion();
+            VerificarConexion(inicioJornada);
         }
     };
     private OnClickListener IniPau_Click = new OnClickListener() {
@@ -374,7 +368,8 @@ public class EventsActivity extends AppCompatActivity {
         public void onClick(View v) {
             String evento = GetEventoSeleccionado(113);
             EventoSeleccionado = evento;
-            VerificarAutentificacion();
+            //VerificarAutentificacion();
+            VerificarConexion(inicioPausa);
         }
     };
     private OnClickListener TermPau_Click = new OnClickListener() {
@@ -382,7 +377,8 @@ public class EventsActivity extends AppCompatActivity {
         public void onClick(View v) {
             String evento = GetEventoSeleccionado(114);
             EventoSeleccionado = evento;
-            VerificarAutentificacion();
+            //VerificarAutentificacion();
+            VerificarConexion(terminoPausa);
         }
     };
     private OnClickListener TermJor_Click = new OnClickListener() {
@@ -390,14 +386,16 @@ public class EventsActivity extends AppCompatActivity {
         public void onClick(View v) {
             String evento = GetEventoSeleccionado(115);
             EventoSeleccionado = evento;
-            VerificarAutentificacion();
+            //VerificarAutentificacion();
+            VerificarConexion(terminoJornada);
         }
     };
 
     private OnClickListener Transit_Click = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            ProcesoMarcaTransito();
+            //ProcesoMarcaTransito();
+            VerificarConexion(transito);
         }
     };
     /**********************************************************************************************/
@@ -538,9 +536,17 @@ public class EventsActivity extends AppCompatActivity {
         HabilitarTransito();
 
         //verifico el estado de conexion del dispositivo.
-        new isConnected().execute(Globals.getInstance().getParametrosSistema().get_Base_Datos_IP());
+        new isConnected(null).execute(Globals.getInstance().getParametrosSistema().get_Base_Datos_IP());
     }
 
+
+    private void VerificarConexion(Button btn){
+        try{
+            new isConnected(btn).execute(Globals.getInstance().getParametrosSistema().get_Base_Datos_IP());
+        }catch (Exception ex){
+            Log.e(TAG, "Error al verificar la conexion");
+        }
+    }
 
     private void Notificacion(String message){
         try{
@@ -607,6 +613,16 @@ public class EventsActivity extends AppCompatActivity {
      * Conjunto de hilos utilizado para la verificacion de conexion del servidor de webservice y base de datos.
      */
     private class isConnected extends AsyncTask<String, Void, Boolean> {
+        Button btn;
+        public isConnected(Button botonLlamado){
+            btn = botonLlamado;
+        }
+
+        @Override
+        protected void onPreExecute(){
+            EstadoBotones(false);
+            barraProceso.setVisibility(View.VISIBLE);
+        }
 
         @Override
         protected Boolean doInBackground(String... params) {
@@ -624,16 +640,25 @@ public class EventsActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             try{
-                if(result){
+                if(result && btn == null){
                     //verifico la existencia de webservice.
-                    new isWSConnected().execute();
-
-                }else{
+                    new isWSConnected(btn).execute();
+                }else if(!result && btn == null){
                     faroConnect.setImageResource(R.drawable.led_red_th);
                     estadoConexion = false;
                     Log.i(TAG, "Cambio a faro de evento Desconectado");
                     ObtenerAntecedentes();
-
+                }else if(result && btn != null){//al seleccionar un evento con conexion online
+                    new isWSConnected(btn).execute();
+                }else if(!result && btn != null) { //al seleccionar un evento con conexion offline
+                    faroConnect.setImageResource(R.drawable.led_red_th);
+                    estadoConexion = false;
+                    //se procede a la autentificacion.
+                    if(btn == transito){
+                        ProcesoMarcaTransito();
+                    }else{
+                        VerificarAutentificacion();
+                    }
                 }
             }catch(Exception ex){
                 Log.e(TAG, "Error en coneccion (postExe -> isConnected):: "+ ex.getMessage());
@@ -644,6 +669,17 @@ public class EventsActivity extends AppCompatActivity {
         String NAMESPACE = "http://tempuri.org/";
         String nombreFuncion = "U02916D";
         String URL = Globals.getInstance().getParametrosSistema().get_Url_WebServices();
+
+        Button btn;
+        public isWSConnected(Button botonLlamado){
+            btn = botonLlamado;
+        }
+
+        @Override
+        protected void onPreExecute(){
+            barraProceso.setVisibility(View.VISIBLE);
+            EstadoBotones(false);
+        }
 
         @Override
         protected Boolean doInBackground(String... params) {
@@ -679,7 +715,6 @@ public class EventsActivity extends AppCompatActivity {
                 cancel(true);
             }
             return envio;
-
         }
 
         @Override
@@ -687,22 +722,51 @@ public class EventsActivity extends AppCompatActivity {
             Log.i(TAG, "Cancel -> isWSConnected");
             faroConnect.setImageResource(R.drawable.led_red_th);
             estadoConexion = false; //se cambia a estado desconectado.
-            ObtenerAntecedentes(); // se envia a funcion de estadoConexion.
+
+            if(btn == null){
+                ObtenerAntecedentes(); // se envia a funcion de estadoConexion.
+            }else if(btn == transito){
+                ProcesoMarcaTransito();
+            }else{
+                VerificarAutentificacion();
+            }
+
+
         }
 
         @Override
         protected void onPostExecute(Boolean result){
             try{
-                if(result){
+                if(result && btn == null){
                     faroConnect.setImageResource(R.drawable.led_green_th);
                     Log.i(TAG, "Cambio a faro de evento Conectado");
                     estadoConexion = true;
-                }else{
+                    ObtenerAntecedentes();
+                }else if(!result && btn == null){
                     faroConnect.setImageResource(R.drawable.led_red_th);
                     Log.i(TAG, "Cambio a faro de evento Desconectado");
                     estadoConexion = false;
+                    ObtenerAntecedentes();
+                }else if(result && btn != null){// llamado de un evento con conexion online
+                    faroConnect.setImageResource(R.drawable.led_green_th);
+                    estadoConexion = true;
+
+                    if(btn == transito){
+                        ProcesoMarcaTransito();
+                    }else{
+                        VerificarAutentificacion();
+                    }
+                }else if(!result && btn != null){ // llamado de un evento con conexion offline
+                    faroConnect.setImageResource(R.drawable.led_red_th);
+                    estadoConexion = false;
+
+                    if(btn == transito){
+                        ProcesoMarcaTransito();
+                    }else{
+                        VerificarAutentificacion();
+                    }
                 }
-                ObtenerAntecedentes();
+
             }catch(Exception ex){
                 Log.e(TAG, "Error en coneccion (postExe -> isWSConnected):: "+ ex.getMessage());
             }
@@ -792,7 +856,6 @@ public class EventsActivity extends AppCompatActivity {
                     Notificacion("No fue posible ingresar el registro");
                 }else{
                     progressDialogCargando.setProgress(progressDialogCargando.getProgress() + 15);
-                    Thread.sleep(1000);
                     progressDialogCargando.dismiss();
                 }
                 setResult(RESULT_OK);
@@ -847,7 +910,7 @@ public class EventsActivity extends AppCompatActivity {
                 }else{
                     progressDialogCargando.setProgress(30);
                     progressDialogCargando.setMessage("Registro realizado a las "+ dateMark);
-                    Thread.sleep(5000);
+                    //Thread.sleep(5000);
                     progressDialogCargando.dismiss();
                 }
             }catch (Exception ex){
@@ -881,7 +944,7 @@ public class EventsActivity extends AppCompatActivity {
      **/
     private void IngresarMarca(){
         try{
-            int id_verificacion = -1;
+            int id_verificacion = -1; //en java los int no pueden ser vacios (averiguar).
             String id_persona = null;
             String tipo_credencial = null;
             String nivel_autenticacion = null;
