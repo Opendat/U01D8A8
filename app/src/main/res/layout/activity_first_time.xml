@@ -99,7 +99,7 @@
                 android:id="@+id/ET_IPWS"
                 android:textColor="?attr/colorBackgroundFloating"
                 android:textColorHint="@android:color/background_light"
-                android:text="http://www.opendat.cl/umbral_ws/U02916C.asmx"/>
+                android:text="http://10.0.167.47/umbral_ws/U02916C.asmx"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -116,7 +116,7 @@
                 android:hint="@string/tx_idPort"
                 android:textColor="?attr/colorBackgroundFloating"
                 android:textColorHint="@android:color/background_light"
-                android:text="G040D9AF4" />
+                android:text="G040D9AF5" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 

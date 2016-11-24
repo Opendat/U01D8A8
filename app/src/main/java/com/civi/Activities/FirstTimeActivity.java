@@ -203,9 +203,13 @@ public class FirstTimeActivity extends AppCompatActivity {
                     , global.getParametrosSistema().get_Eventos()
                     , global.getParametrosSistema().get_Localizacion_Geografica());
 
-            if(!res) Notificacion("Se produjo un problema en la creacion del archivo config.xml, no la sido posible su creacion");
+            if(!res) {
+                Notificacion("Se produjo un problema en la creacion del archivo config.xml, no la sido posible su creacion");
+                btnIni.setEnabled(true);
+            }else{
+                GoToMainActivity(global.getParametrosSistema());
+            }
 
-            GoToMainActivity(global.getParametrosSistema());
 
 
         }catch (Exception ex) {
@@ -288,6 +292,7 @@ public class FirstTimeActivity extends AppCompatActivity {
             if(miBarra != null){
                 miBarra.setVisibility(View.INVISIBLE);
             }
+
         }catch (Exception ex){
             Log.e(TAG, "Error al enviar mensaje (FirstTimeActivity):: "+ex.getMessage());
         }

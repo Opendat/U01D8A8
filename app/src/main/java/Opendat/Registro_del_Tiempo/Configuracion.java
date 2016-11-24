@@ -25,10 +25,6 @@ import javax.xml.transform.stream.StreamResult;
 import Opendat.Registro_del_Tiempo.Clases_Genericas.EventoPuertaMagnetica;
 
 /**
- * Created by jvasquez on 06-10-2016.
- */
-
-/**
  * Clase utilizada para las funciones de configuracion del archivo config.
  *
  * Modificaciones:

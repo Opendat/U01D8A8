@@ -360,6 +360,9 @@ public class U02916C {
             }
             Log.i(TAG, "Entra a funcion onCancelled de verificacion ws");
             Notificacion("No es posible conectarse a WS");
+            if(origen instanceof FirstTimeActivity){
+                ((FirstTimeActivity) origen).ConfiguracionSistema_CorteSecuenciaHilo();
+            }
         }
 
         @Override
@@ -378,7 +381,7 @@ public class U02916C {
             if (global.getNumThreads() == 0){
                 Log.i(TAG, "ultimo hilo: Verificacion WS");
                 //miBarra.setVisibility(View.INVISIBLE);
-                if(resultado[2].equals("Activities.FirstTimeActivity")){//recordar agregar condicionantes por cada activity que utiliza este hilo de verificacion.
+                if(resultado[2].equals("Activities.FirstTimeActivity")){
                     //origen.GeneracionConfig();
                     ((FirstTimeActivity)origen).configuracionSistema();
                 }
@@ -459,7 +462,9 @@ public class U02916C {
             }
             Log.i(TAG, "Se ha entrado a funcion onCancelled de verificar_portico");
             Notificacion("No ha sido posible obtener la informacion sobre el portico");
-
+            if(origen instanceof FirstTimeActivity){
+                ((FirstTimeActivity) origen).ConfiguracionSistema_CorteSecuenciaHilo();
+            }
         }
 
         @Override
@@ -469,6 +474,9 @@ public class U02916C {
             //asigno a parametro de sistema al tipo de disposisicion del dispositivo.
             if(respuesta.size() == 0){
                 Notificacion("No ha sido posible obtener la informacion sobre el portico");
+                if(origen instanceof FirstTimeActivity){
+                    ((FirstTimeActivity) origen).ConfiguracionSistema_CorteSecuenciaHilo();
+                }
             }else{
                 global.getParametrosSistema().set_Disposicion(respuesta.get(0).get_tipo_disposicion());
                 global.decrementThread();
@@ -542,6 +550,9 @@ public class U02916C {
         protected void onCancelled(String result){
             Log.i(TAG, "Entra a funcion onCancelled de Buscar_portico");
             Notificacion("No es posible obtener la informacion del portico ingresado");
+            if(origen instanceof FirstTimeActivity){
+                ((FirstTimeActivity) origen).ConfiguracionSistema_CorteSecuenciaHilo();
+            }
         }
 
         @Override
