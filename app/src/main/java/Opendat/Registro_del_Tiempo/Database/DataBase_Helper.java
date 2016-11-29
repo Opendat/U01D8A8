@@ -21,7 +21,7 @@ public class DataBase_Helper extends SQLiteOpenHelper {
 
     private static final String TAG = "AppMRAT";
 
-    private static final String BD_NAME = "DataBaseU01D8A8.sqlite";
+    private static final String BD_NAME = "DataBaseU0293C4.sqlite";
     private static final int BD_SCHEME_VERSION = 1;
 
     //constructor.
