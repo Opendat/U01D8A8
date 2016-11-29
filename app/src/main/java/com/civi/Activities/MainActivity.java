@@ -301,6 +301,7 @@ public class MainActivity extends Activity {
                 Log.i(TAG,"deteccion de Tarjeta: " + cv.UID);
                 if(cv.UID.equals(global.getParametrosSistema().get_Id_CredencialAdmin())){
                     Log.i(TAG, "Tarjeta Corresponde al administrador");
+                    Globals.getInstance().setDatabase_manager(manager);
                     startActivityForResult(new Intent(MainActivity.this,MenuAdminActivity.class), CODIGO_MENU_ADMIN);
                 }else{
                     Log.i(TAG, "Se busca propietario de tarjeta");

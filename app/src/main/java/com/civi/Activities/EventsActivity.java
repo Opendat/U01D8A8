@@ -520,7 +520,6 @@ public class EventsActivity extends AppCompatActivity {
         cancel = (Button)findViewById(R.id.BT_Cancelar);
 
         EstadoBotones(false);
-
         theU02916C = new U02916C(Globals.getInstance().getParametrosSistema().get_Url_WebServices());
         //theU02916C.setAlertDialog(alertDialog);
 
