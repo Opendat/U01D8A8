@@ -693,7 +693,7 @@ public class EventsActivity extends AppCompatActivity {
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.dotNet = true;
             envelope.setOutputSoapObject(request);
-            HttpTransportSE transporte = new HttpTransportSE(URL);
+            HttpTransportSE transporte = new HttpTransportSE(URL, 3000);
 
             try {
                 transporte.call(NAMESPACE + nombreFuncion, envelope, headers);
@@ -964,7 +964,7 @@ public class EventsActivity extends AppCompatActivity {
 
             if(estadoConexion){
                 //conectado
-                SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm:ss");
+                SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
                 Date datenow = new Date();
                 //Credencial no Existe en LDV.
                 if(persona == null){
@@ -1024,8 +1024,8 @@ public class EventsActivity extends AppCompatActivity {
 
                 }
             }else{ //sin coneccion.
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-                SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm:ss");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy HH:mm:ss");
+                SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
                 Date datenow = new Date();
                 String now = dateFormat.format(datenow);
                 String dateDeploy = dateFormat2.format(datenow);
