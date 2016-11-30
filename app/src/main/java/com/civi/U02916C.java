@@ -273,7 +273,7 @@ public class U02916C {
         this.origen = llamado;
 
         configAlertDialog(llamado);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date datenow = new Date(); //solo para desplegar la fecha y hora del dispositivo.
 
         progressDialog = new ProgressDialog(origen);
@@ -1409,7 +1409,8 @@ public class U02916C {
             Log.i(TAG, "Se ha realizado la marca de transito a la BD");
             try{
                 //sonido de marca realizada.
-                Thread.sleep(5000);
+                Thread.sleep(1000);
+                Globals.getInstance().getSonidos().Reproducir_IngreCorrec(origen);
             }catch (Exception ex){
                 Log.e(TAG, "Error en POstExecute de hilo de Ingreso de Marca");
             }

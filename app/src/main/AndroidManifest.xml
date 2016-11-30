@@ -14,13 +14,12 @@
         <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.EventsActivity" />
-        <activity android:name=".Activities.FirstTimeActivity"></activity>
-        <activity android:name=".Activities.MenuAdminActivity"></activity>
+        <activity android:name=".Activities.EventsActivity"/>
+        <activity android:name=".Activities.FirstTimeActivity"/>
+        <activity android:name=".Activities.MenuAdminActivity"/>
     </application>
 
 </manifest>
