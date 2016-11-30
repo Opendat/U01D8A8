@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import Opendat.Registro_del_Tiempo.Clases_Genericas.Sonidos;
 import Opendat.Registro_del_Tiempo.Database.DataBase_Manager;
 import Opendat.Registro_del_Tiempo.Parametros;
 
@@ -31,6 +32,7 @@ public class Globals {
 
     private DataBase_Manager dataBase_manager; //variable que almacena la instacia de base de datos utilizada.
 
+    private Sonidos sonidos = new Sonidos();
     private Globals(){
     }
 
@@ -91,6 +93,13 @@ public class Globals {
         this.dataBase_manager = database;
     }
 
+    public Sonidos getSonidos() {
+        return sonidos;
+    }
+
+    public void setSonidos(Sonidos sonidos) {
+        this.sonidos = sonidos;
+    }
     /**
      * Funcion utilizada por los hilos en ejecucion.
      * El objetivo es controlar la ejecucion de multiples hilos, para asi conocer el ultimo hilo en realizar su tarea
@@ -122,5 +131,6 @@ public class Globals {
         this.id_RFID = null;
         this.numThreads = 0;
     }
+
 
 }

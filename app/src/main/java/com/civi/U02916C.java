@@ -1257,7 +1257,7 @@ public class U02916C {
     private class CallWSInsertar_Marca extends AsyncTask<String, Integer, Boolean>{
         String nombreFuncion = "U029179";
         ProgressDialog progressDialog;
-
+        String idVerificacion = null;
 
         //constructor para asignacion de progressDialog.
         public CallWSInsertar_Marca(ProgressDialog pd){
@@ -1290,6 +1290,7 @@ public class U02916C {
             request.addProperty("_stateTransfer", params[9]);
             request.addProperty("_loc_geo", params[10]);
             request.addProperty("_originMark", params[11]);
+            idVerificacion=params[3]; //Para saber si la persona esta verificada o no;
             publishProgress(25);
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -1327,6 +1328,14 @@ public class U02916C {
             Log.i(TAG, "Se ha realizado la marca a la BD");
             try{
                 Thread.sleep(1000);
+                if(result){
+                    if(idVerificacion != null){
+                        Globals.getInstance().getSonidos().Reproducir_IngreCorrec(origen);
+                    }else{
+                        Globals.getInstance().getSonidos().Reproducir_IngrePendVerifi(origen);
+                    }
+
+                }
             }catch (Exception ex){
                 Log.e(TAG, "Error en POstExecute de hilo de Ingreso de Marca");
             }

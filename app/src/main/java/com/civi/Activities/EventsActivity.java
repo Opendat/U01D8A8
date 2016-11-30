@@ -40,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -136,9 +137,11 @@ public class EventsActivity extends AppCompatActivity {
         EstadoBotones(true);
         try{
             if(antecedentes != null && antecedentes.size() != 0 ){
+                Globals.getInstance().getSonidos().Reproducir_SelecEvent(this);
                 nombrePersona.setText("Bienvenido: "+antecedentes.get(0).get_U0217F9());
                 persona = antecedentes;
             }else{
+                Globals.getInstance().getSonidos().Reproducir_CredNV(this);
                 nombrePersona.setText("Bienvenido/a");
                 persona = null;
             }
@@ -347,6 +350,7 @@ public class EventsActivity extends AppCompatActivity {
         public void onClick(View v) {
             try{
                 setResult(RESULT_OK);
+                Globals.getInstance().getSonidos().Reproducir_IngreCancel(EventsActivity.this);
                 Globals.getInstance().setId_RFID(""); //limpio el dato de la tarjeta que se presentó para marca.
                 finish();
             }catch (Exception ex){
@@ -485,8 +489,8 @@ public class EventsActivity extends AppCompatActivity {
                         Globals.getInstance().getId_RFID(),
                         id_persona);
             }else{
-                SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-                SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+                SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd-M-yyyy HH:mm:ss");
                 Date datenow = new Date();
                 new IngresarTransitoOffline().execute(dateFormat.format(datenow), //hora
                         dateTimeFormat.format(datenow), //fecha y hora
@@ -775,6 +779,8 @@ public class EventsActivity extends AppCompatActivity {
         long r = -1;
         String dateMark;
 
+        String idVerificacion = null;
+
         @Override
         protected void onPreExecute(){
             ShowProgressDialog("Registrando Marca...");
@@ -816,6 +822,7 @@ public class EventsActivity extends AppCompatActivity {
                                 params[9], //"Z0B99CA"
                                 params[10], //Globals.getInstance().getParametrosSistema().get_Localizacion_Geografica()
                                 params[11]); //"Z0B9E19"
+                        idVerificacion = params[5];
                         publishProgress("70", "Registro realizado a las " + dateMark + ".\nRegistro verificado...transacción aceptada.");
                     }else{
                         //Credencial duplicada en el pórtico.
@@ -831,6 +838,7 @@ public class EventsActivity extends AppCompatActivity {
                                 params[9], //"Z0B99CC"
                                 params[10], //Globals.getInstance().getParametrosSistema().get_Localizacion_Geografica()
                                 params[11]); //"Z0B9E19"
+                        idVerificacion = params[5];
                         publishProgress("70", "Registro realizado a las " + dateMark + ".\nRegla de verificación duplicada, registro no verificado...transacción aceptada.");
                     }
                 }
@@ -854,6 +862,11 @@ public class EventsActivity extends AppCompatActivity {
                     Log.e(TAG, "No fue posible ingresar el registro ");
                     Notificacion("No fue posible ingresar el registro");
                 }else{
+                    if(idVerificacion != null){//condicionante nesesario para desplegar sonido se ingreso segun verificacion.
+                        Globals.getInstance().getSonidos().Reproducir_IngreCorrec(EventsActivity.this);
+                    }else{
+                        Globals.getInstance().getSonidos().Reproducir_IngrePendVerifi(EventsActivity.this);
+                    }
                     progressDialogCargando.setProgress(progressDialogCargando.getProgress() + 15);
                     progressDialogCargando.dismiss();
                 }
@@ -907,6 +920,7 @@ public class EventsActivity extends AppCompatActivity {
                     Log.e(TAG, "No fue posible ingresar el registro de transito a la BD.");
                     Notificacion("No fue posible ingresar el registro de transito a la BD");
                 }else{
+                    Globals.getInstance().getSonidos().Reproducir_IngreCorrec(EventsActivity.this);
                     progressDialogCargando.setProgress(30);
                     progressDialogCargando.setMessage("Registro realizado a las "+ dateMark);
                     //Thread.sleep(5000);
