@@ -19,17 +19,8 @@ import com.civi.R;
 public class Sonidos {
     private static final String TAG = "AppMRAT";
 
-    /*MediaPlayer mp_credNV; //Credencial no verificada.
-    MediaPlayer mp_regOk; //Ingreso correcto.
-    MediaPlayer mp_regPendV; //Ingreso pendiente de verificacion.
-    MediaPlayer mp_regCancel; //Ingreso cancelado.
-    MediaPlayer mp_selEvent; //Seleccione tipo de evento.
-    MediaPlayer mp_regPIN; //Por favor, ingrese el PIN de 4 digitos.
-    MediaPlayer mp_regHuella; //Por favor, coloque su dedo en el lector de huellas.
-    MediaPlayer mp_errPIN; //PIN incorrecto, intente nuevamente.
-    MediaPlayer mp_errHuella; //Se ha agotado el tiempo de registro, lectura cancelada.*/
-
     MediaPlayer mp;
+    
     public Sonidos(){
 
     }
